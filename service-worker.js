@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/geforce-now-games/precache-manifest.428889302d2fd126df8dd670bd97bbcd.js"
+  "/geforce-now-games/precache-manifest.f30e461f70721277d387c2bf5c452f38.js"
 );
 
 self.addEventListener('message', (event) => {
