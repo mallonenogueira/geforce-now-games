@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ae81c30c8f745732f9479b44a45a9f3f",
+    "revision": "424c1d84fbbcf1322a1a388e45b97e6b",
     "url": "/geforce-now-games/index.html"
   },
   {
-    "revision": "89c29b048d369883abd1",
-    "url": "/geforce-now-games/static/css/main.1b437edd.chunk.css"
+    "revision": "cb3d123c67a868692f61",
+    "url": "/geforce-now-games/static/css/main.1490de23.chunk.css"
   },
   {
     "revision": "de80be4d3ae7549c41cc",
     "url": "/geforce-now-games/static/js/2.cb0c6d3e.chunk.js"
   },
   {
-    "revision": "89c29b048d369883abd1",
+    "revision": "cb3d123c67a868692f61",
     "url": "/geforce-now-games/static/js/main.bed147e4.chunk.js"
   },
   {
