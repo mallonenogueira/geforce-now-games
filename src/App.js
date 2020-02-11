@@ -82,7 +82,9 @@ export default function App() {
         {filters.map(game => (
           <div key={game.id} className="col">
             {game.imageUrl ? (
-              <img className="image" src={game.imageUrl} alt="" />
+              <a href={game.steamUrl} target="_blank" rel="noopener noreferrer">
+                <img className="image" src={game.imageUrl} alt="" />
+              </a>
             ) : (
               <span className="image">Sem informações da steam</span>
             )}
