@@ -45,3 +45,9 @@ label span {
   display: inline-block;
   text-align: right;
 }
+
+a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
