@@ -36,13 +36,17 @@ export default function App() {
   });
 
   useEffect(() => {
-    GameService.fetchGames()
-      .then((dataGames) => setGames(dataGames))
-      .then(() => setLoading(false));
+    GameService.fetchGames().then((dataGames) => setGames(dataGames));
   }, []);
 
   useEffect(() => {
+    setLoading(true);
+
     setFilteredGames(games.filter(filtersByFilterObject(filters)));
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, [games, filters]);
 
   return (
