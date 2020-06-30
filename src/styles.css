@@ -172,13 +172,13 @@ body {
 */
 
 @media screen and (max-width: 960px) {
-  .col {
+  .col-4 {
     width: calc(100% / 2);
   }
 }
 
 @media screen and (max-width: 720px) {
-  .col {
+  .col-4 {
     width: 100%;
   }
 }
