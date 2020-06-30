@@ -22,7 +22,8 @@
       {
         "extensions": [".js", ".jsx"]
       }
-    ]
+    ],
+    "react/prop-types": 0
   },
   "settings": {
     "import/resolver": {
