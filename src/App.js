@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import GameService from 'services/games';
+import Header from 'components/Header';
+import Application from 'components/Application';
+
 import './styles.css';
 
-const API =
-  'https://static.nvidiagrid.net/supported-public-game-list/gfnpc.json?JSON';
+function filtersByFilterObject(filters) {
+  const filledKeys = Object.keys(filters).filter((field) => filters[field]);
+
+  if (!filledKeys.length) {
+    return () => true;
+  }
+
+  return (data) => {
+    return filledKeys.find((label) => {
+      return !!data[label]
+        .toString()
+        .toLowerCase()
+        .includes(filters[label].toLowerCase());
+    });
+  };
+}
 
 export default function App() {
-  const [games, setGames] = React.useState([]);
-  const [filters, setFilters] = React.useState([]);
-  const [filtersObject, setFiltersObject] = React.useState({
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filteredGames, setFilteredGames] = useState([]);
+  const [filters, setFilters] = useState({
     title: '',
     publisher: '',
     isFullyOptimized: '',
@@ -15,103 +35,30 @@ export default function App() {
     genres: '',
   });
 
-  // const [genres, setGenres] = React.useState("");
-  // const [title, setTitle] = React.useState("");
-  // const [publisher, setPublisher] = React.useState("");
-  // const [isFullyOptimized, setFullyOptimized] = React.useState("");
-  // const [isHighlightsSupported, setHighlightsSupported] = React.useState("");
-
-  React.useEffect(() => {
-    fetch(API)
-      .then((data) => data.json())
-      .then((dataGames) =>
-        dataGames.map((game) => {
-          const newGame = { ...game };
-
-          if (newGame.steamUrl) {
-            [, newGame.steamId] = newGame.steamUrl.split('/app/');
-            newGame.imageUrl = `https://steamcdn-a.akamaihd.net/steam/apps/${newGame.steamId}/capsule_184x69.jpg`;
-          }
-
-          return newGame;
-        })
-      )
-      .then((dataGames) => setGames(dataGames));
+  useEffect(() => {
+    GameService.fetchGames()
+      .then((dataGames) => setGames(dataGames))
+      .then(() => setLoading(false));
   }, []);
 
-  React.useEffect(() => {
-    const f = games.filter((game) => {
-      let filtrar = true;
-      Object.keys(filtersObject).forEach((label) => {
-        if (
-          filtrar &&
-          !game[label]
-            .toString()
-            .toLowerCase()
-            .includes(filtersObject[label].toLowerCase())
-        ) {
-          filtrar = false;
-        }
-      });
-
-      return filtrar;
-    });
-
-    setFilters(f);
-  }, [games, filtersObject]);
+  useEffect(() => {
+    setFilteredGames(games.filter(filtersByFilterObject(filters)));
+  }, [games, filters]);
 
   return (
-    <div>
-      {Object.keys(filtersObject).map((label) => (
-        <div key={label}>
-          <div>
-            <span>{label}</span>
-            <input
-              value={filtersObject[label]}
-              onChange={(e) => {
-                return setFiltersObject({
-                  ...filtersObject,
-                  [label]: e.target.value,
-                });
-              }}
-            />
-          </div>
-        </div>
-      ))}
+    <>
+      <Header
+        title="GeForce-Now | Games"
+        filters={filters}
+        onChangeFilters={(label, value) => {
+          setFilters({
+            ...filters,
+            [label]: value,
+          });
+        }}
+      />
 
-      <div className="App">
-        {filters.map((game) => (
-          <div key={game.id} className="col">
-            {game.imageUrl ? (
-              <a href={game.steamUrl} target="_blank" rel="noopener noreferrer">
-                <img className="image" src={game.imageUrl} alt="" />
-              </a>
-            ) : (
-              <span className="image">Sem informações da steam</span>
-            )}
-            <div>
-              <span className="label">title:</span>
-              {game.title}
-            </div>
-            <div>
-              <span className="label">isFullyOptimized:</span>
-              {`${game.isFullyOptimized}`}
-            </div>
-            <div>
-              <span className="label">isHighlightsSupported:</span>
-              {`${game.isHighlightsSupported}`}
-            </div>
-            <div>
-              <span className="label">publisher:</span>
-              {game.publisher}
-            </div>
-            <div>
-              <span className="label">genres:</span>
-              {game.genres.join(', ')}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      <Application loading={loading} games={filteredGames} />
+    </>
   );
 }

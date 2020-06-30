@@ -1,53 +1,146 @@
 body {
   background: #222;
   color: #ccc;
+  font-size: 100%;
+  font-family: sans-serif;
 }
 
-.App {
-  font-family: sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .col {
-  width: 30%;
-  margin-top: 45px;
-  margin-right: 2%;
+  width: calc(100% / 3);
+  margin-top: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.image {
-  width: 184px;
-  height: 69px;
-  background: #ccc;
-  color: #222;
+.row {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.application {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.application-loading {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  height: 100px;
+  width: 100px;
+  animation: spin 1.5s linear infinite;
+  border: 5px solid rgba(204, 204, 204, 0.267);
+  border-bottom-color: #5fada9;
+  border-radius: 50%;
+  transform-origin: 50% 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.filters {
+  padding: 10px;
+  padding-bottom: 15px;
+
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  align-items: flex-end;
+  background: #222;
+  border-bottom: 2px solid #666666;
+}
+
+.filters-title {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.filters-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filters .input-label {
+  color: #6d918f;
+  font-size: 14px;
+}
+
+.filters .input {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-game {
+  background: #333;
+  padding: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  /* border: 1px solid #666; */
+  box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.25),
+    1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card-game .steam-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
+  height: 210px;
 }
 
-.label {
+.card-game .steam-image {
+  flex: 1;
+  height: 250px;
+  object-fit: cover;
+
+  background: rgb(35, 35, 35);
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.card-game .label {
   color: rgb(109, 145, 143);
   margin-right: 20px;
   margin-top: 5px;
   display: inline-block;
 }
 
-label {
-  color: rgb(109, 145, 143);
-  font-weight: bold;
+/* 
+  Extra small <576px
+  Small ≥576px
+  Medium ≥768px
+  Large ≥992px
+  Extra large ≥1200px 
+*/
+
+@media screen and (max-width: 960px) {
+  .col {
+    width: calc(100% / 2);
+  }
 }
 
-label span {
-  margin-right: 20px;
-  margin-top: 10px;
-  min-width: 200px;
-  display: inline-block;
-  text-align: right;
-}
-
-a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 720px) {
+  .col {
+    width: 100%;
+  }
 }
