@@ -47,6 +47,13 @@ body {
   padding-bottom: 20px;
 }
 
+.application-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
 .application-loading {
   position: absolute;
   top: calc(50% - 50px);
