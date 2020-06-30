@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/geforce-now-games/static/css/main.77cf15dd.chunk.css",
-    "main.js": "/geforce-now-games/static/js/main.9b582c27.chunk.js",
-    "main.js.map": "/geforce-now-games/static/js/main.9b582c27.chunk.js.map",
+    "main.css": "/geforce-now-games/static/css/main.45d41961.chunk.css",
+    "main.js": "/geforce-now-games/static/js/main.f53c4706.chunk.js",
+    "main.js.map": "/geforce-now-games/static/js/main.f53c4706.chunk.js.map",
     "runtime~main.js": "/geforce-now-games/static/js/runtime~main.b0c3112b.js",
     "runtime~main.js.map": "/geforce-now-games/static/js/runtime~main.b0c3112b.js.map",
     "static/js/2.287d3a16.chunk.js": "/geforce-now-games/static/js/2.287d3a16.chunk.js",
     "static/js/2.287d3a16.chunk.js.map": "/geforce-now-games/static/js/2.287d3a16.chunk.js.map",
     "index.html": "/geforce-now-games/index.html",
-    "precache-manifest.a280b992d88cc1cc0d2daf51c1e15652.js": "/geforce-now-games/precache-manifest.a280b992d88cc1cc0d2daf51c1e15652.js",
+    "precache-manifest.284946815a460b5c9928e74e20639c02.js": "/geforce-now-games/precache-manifest.284946815a460b5c9928e74e20639c02.js",
     "service-worker.js": "/geforce-now-games/service-worker.js",
-    "static/css/main.77cf15dd.chunk.css.map": "/geforce-now-games/static/css/main.77cf15dd.chunk.css.map"
+    "static/css/main.45d41961.chunk.css.map": "/geforce-now-games/static/css/main.45d41961.chunk.css.map"
   }
 }
