@@ -23,8 +23,25 @@ function filtersByFilterObject(filters) {
   };
 }
 
+function createDebounce() {
+  let id = null;
+
+  return (fn) => (wait) => {
+    clearTimeout(id);
+
+    if (wait > 0) {
+      id = setTimeout(fn, wait);
+    } else {
+      fn();
+    }
+  };
+}
+
+const debounce = createDebounce();
+
 export default function App() {
   const [games, setGames] = useState([]);
+  const [fetching, setFetching] = useState(true);
   const [loading, setLoading] = useState(true);
   const [filteredGames, setFilteredGames] = useState([]);
   const [filters, setFilters] = useState({
@@ -36,17 +53,17 @@ export default function App() {
   });
 
   useEffect(() => {
-    GameService.fetchGames().then((dataGames) => setGames(dataGames));
+    GameService.fetchGames()
+      .then((dataGames) => setGames(dataGames))
+      .then(() => setFetching(false));
   }, []);
 
   useEffect(() => {
-    setLoading(true);
+    debounce(() => setLoading(true))(0);
 
     setFilteredGames(games.filter(filtersByFilterObject(filters)));
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    debounce(() => setLoading(false))(250);
   }, [games, filters]);
 
   return (
@@ -62,7 +79,7 @@ export default function App() {
         }}
       />
 
-      <Application loading={loading} games={filteredGames} />
+      <Application loading={loading || fetching} games={filteredGames} />
     </>
   );
 }
