@@ -5,9 +5,12 @@ import Header from 'components/Header';
 import Application from 'components/Application';
 
 import 'styles.css';
+import createDebounce from 'utils/debounce';
 
 function filtersByFilterObject(filters) {
-  const filledKeys = Object.keys(filters).filter((field) => filters[field]);
+  const filledKeys = Object.keys(filters).filter(
+    (field) => filters[field].isFiltering
+  );
 
   if (!filledKeys.length) {
     return () => true;
@@ -18,22 +21,8 @@ function filtersByFilterObject(filters) {
       return !!data[label]
         .toString()
         .toLowerCase()
-        .includes(filters[label].toLowerCase());
+        .includes(filters[label].value.toLowerCase());
     });
-  };
-}
-
-function createDebounce() {
-  let id = null;
-
-  return (fn) => (wait) => {
-    clearTimeout(id);
-
-    if (wait > 0) {
-      id = setTimeout(fn, wait);
-    } else {
-      fn();
-    }
   };
 }
 
@@ -45,11 +34,11 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [filteredGames, setFilteredGames] = useState([]);
   const [filters, setFilters] = useState({
-    title: '',
-    publisher: '',
-    isFullyOptimized: '',
-    isHighlightsSupported: '',
-    genres: '',
+    title: { value: '', isFiltering: false, alwaysVisible: true },
+    publisher: { value: '', isFiltering: false, alwaysVisible: true },
+    isFullyOptimized: { value: '', isFiltering: false },
+    isHighlightsSupported: { value: '', isFiltering: false },
+    genres: { value: '', isFiltering: false },
   });
 
   useEffect(() => {
@@ -70,11 +59,15 @@ export default function App() {
     <>
       <Header
         title="GeForce-Now | Games"
+        mobileTitle="GF-Now Games"
         filters={filters}
         onChangeFilters={(label, value) => {
           setFilters({
             ...filters,
-            [label]: value,
+            [label]: {
+              value,
+              isFiltering: !!value,
+            },
           });
         }}
       />

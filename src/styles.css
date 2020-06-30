@@ -171,13 +171,30 @@ body {
   Extra large ≥1200px 
 */
 
+.d-none {
+  display: none !important;
+}
+
 @media screen and (max-width: 960px) {
+  .d-md-none {
+    display: none !important;
+  }
+
+  .d-md-block {
+    display: block !important;
+  }
   .col-4 {
     width: calc(100% / 2);
   }
 }
 
 @media screen and (max-width: 720px) {
+  .d-sm-none {
+    display: none !important;
+  }
+  .d-sm-block {
+    display: block !important;
+  }
   .col-4 {
     width: 100%;
   }
