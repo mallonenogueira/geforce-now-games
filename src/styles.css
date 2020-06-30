@@ -1,6 +1,24 @@
 body {
-  background: #222;
-  color: #ccc;
+  --gutters: 10px;
+  --background-color: #222;
+  --primary-color: #788f51;
+  --color: #ccc;
+
+  --header-border-color: #666666;
+  --header-background-color: var(--background-color);
+
+  --loading-border-color: rgba(200, 200, 200, 0.25);
+  --loading-border-color-primary: var(--primary-color);
+
+  --card-game-background-color: #333;
+  --card-game-image-background-color: rgb(35, 35, 35);
+  --card-game-box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.25),
+    1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background: var(--background-color);
+  color: var(--color);
   font-size: 100%;
   font-family: sans-serif;
 }
@@ -11,21 +29,22 @@ body {
   margin: 0;
 }
 
-.col {
+.col-4 {
   width: calc(100% / 3);
   margin-top: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--gutters);
+  padding-right: var(--gutters);
 }
 
 .row {
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: var(--gutters);
+  margin-left: var(--gutters);
 }
 
 .application {
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 20px;
 }
 
 .application-loading {
@@ -35,8 +54,8 @@ body {
   height: 100px;
   width: 100px;
   animation: spin 1.5s linear infinite;
-  border: 5px solid rgba(204, 204, 204, 0.267);
-  border-bottom-color: #5fada9;
+  border: 5px solid var(--loading-border-color);
+  border-bottom-color: var(--loading-border-color-primary);
   border-radius: 50%;
   transform-origin: 50% 50%;
 }
@@ -51,7 +70,7 @@ body {
 }
 
 .filters {
-  padding: 10px;
+  padding: var(--gutters);
   padding-bottom: 15px;
 
   position: sticky;
@@ -59,13 +78,13 @@ body {
 
   display: flex;
   align-items: flex-end;
-  background: #222;
-  border-bottom: 2px solid #666666;
+  background: var(--header-background-color);
+  border-bottom: 2px solid var(--header-border-color);
 }
 
 .filters-title {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--gutters);
+  padding-right: var(--gutters);
 }
 
 .filters-body {
@@ -74,27 +93,31 @@ body {
 }
 
 .filters .input-label {
-  color: #6d918f;
-  font-size: 14px;
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  font-weight: bold;
 }
 
 .filters .input {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: var(--gutters);
+  padding-right: var(--gutters);
   display: flex;
   flex-direction: column;
 }
 
 .card-game {
-  background: #333;
-  padding: 10px;
+  background: var(--card-game-background-color);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   /* border: 1px solid #666; */
-  box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.25),
-    1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--card-game-box-shadow);
+}
+.card-game-body {
+  padding: 10px 20px;
 }
 
 .card-game .steam-container {
@@ -111,19 +134,26 @@ body {
   height: auto;
   object-fit: cover;
 
-  background: rgb(35, 35, 35);
-  color: #ccc;
+  background: var(--card-game-image-background-color);
+  color: var(--color);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .card-game .label {
-  color: rgb(109, 145, 143);
-  margin-right: 20px;
-  margin-top: 5px;
+  color: var(--primary-color);
+  margin-right: 10px;
+  margin-top: 2px;
   display: inline-block;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.card-game .value {
+  font-size: 0.85rem;
 }
 
 /* 

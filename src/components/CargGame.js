@@ -9,20 +9,22 @@ export default function CardGame({ game, className = '' }) {
     <div key={game.id} className={`card-game ${className}`}>
       <SteamLink steam={game.steam} />
 
-      <LabelValue label={formatLabel('title:')} value={game.title} />
-      <LabelValue label={formatLabel('publisher:')} value={game.publisher} />
-      <LabelValue
-        label={formatLabel('isFullyOptimized:')}
-        value={game.isFullyOptimized}
-      />
-      <LabelValue
-        label={formatLabel('isHighlightsSupported:')}
-        value={game.isHighlightsSupported}
-      />
-      <LabelValue
-        label={formatLabel('genres:')}
-        value={game.genres.join(', ')}
-      />
+      <div className="card-game-body">
+        <LabelValue label={formatLabel('title:')} value={game.title} />
+        <LabelValue label={formatLabel('publisher:')} value={game.publisher} />
+        <LabelValue
+          label={formatLabel('isFullyOptimized:')}
+          value={game.isFullyOptimized}
+        />
+        <LabelValue
+          label={formatLabel('isHighlightsSupported:')}
+          value={game.isHighlightsSupported}
+        />
+        <LabelValue
+          label={formatLabel('genres:')}
+          value={game.genres.join(', ')}
+        />
+      </div>
     </div>
   );
 }

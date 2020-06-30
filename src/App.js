@@ -4,7 +4,7 @@ import GameService from 'services/games';
 import Header from 'components/Header';
 import Application from 'components/Application';
 
-import './styles.css';
+import 'styles.css';
 
 function filtersByFilterObject(filters) {
   const filledKeys = Object.keys(filters).filter((field) => filters[field]);
