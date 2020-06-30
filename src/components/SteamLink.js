@@ -16,7 +16,11 @@ export default function SteamLink({ steam }) {
 
   return (
     <div className="steam-container">
-      <span className="steam-image">Sem informações da steam.</span>
+      <img
+        className="steam-image"
+        src="https://via.placeholder.com/468x215?text=Sem informações da steam."
+        alt=""
+      />
     </div>
   );
 }

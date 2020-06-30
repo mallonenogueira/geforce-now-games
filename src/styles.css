@@ -107,7 +107,8 @@ body {
 
 .card-game .steam-image {
   flex: 1;
-  height: 250px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
 
   background: rgb(35, 35, 35);
