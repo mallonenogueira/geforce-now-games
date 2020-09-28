@@ -1,0 +1,33 @@
+
+name: CI - Github pages
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Clean build folder
+        run: rm -rf build
+
+      - name: Npm install
+        run: npm install
+  
+      - name: Npm build
+        run: npm run build
+  
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.5.9
+        with:
+          FOLDER: build
+          CLEAN: true
+          BRANCH: gh-pages
+      
+      
