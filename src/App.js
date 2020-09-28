@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import GameService from 'services/games';
-import Header from 'components/Header';
+import Header from 'components/header';
 import Application from 'components/Application';
 
 import 'styles.css';
@@ -37,7 +37,6 @@ export default function App() {
     title: { value: '', isFiltering: false, alwaysVisible: true },
     publisher: { value: '', isFiltering: false, alwaysVisible: true },
     isFullyOptimized: { value: '', isFiltering: false },
-    isHighlightsSupported: { value: '', isFiltering: false },
     genres: { value: '', isFiltering: false },
   });
 

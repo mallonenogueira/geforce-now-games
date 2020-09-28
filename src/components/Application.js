@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationLoading from 'components/ApplicationLoading';
-import CardGame from 'components/CargGame';
+import CardGame from 'components/card-game';
 
 export default function Application({ loading, games }) {
   return (
@@ -10,7 +10,15 @@ export default function Application({ loading, games }) {
         {!!games.length &&
           games.map((game) => (
             <div className="col-4" key={game.id}>
-              <CardGame game={game} />
+              <CardGame
+                game={game}
+                parameters={{
+                  title: (value) => value,
+                  publisher: (value) => value,
+                  isFullyOptimized: (value) => value,
+                  genres: (value) => (value ? value.join(', ') : ''),
+                }}
+              />
             </div>
           ))}
         {!games.length && <ApplicationEmpty />}
